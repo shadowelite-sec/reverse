@@ -73,3 +73,42 @@ table.
 | r13 | r13 | r13d | r13w | r13b |
 | r14 | r14 | r14d | r14w | r14b |
 | r15 | r15 | r15d | r15w | r15b |
+
+## System call
+
+A system call is a procedure that provides the interface between a process and the operating system. It is the way by which a computer program requests a service from the kernel of the operating system.
+
+Different operating systems execute different system calls.
+
+In Linux, making a system call involves transferring control from unprivileged user mode to privileged kernel mode; the details of this transfer vary from architecture to architecture. The libraries take care of collecting the system-call arguments and, if necessary, arranging those arguments in the special form necessary to make the system call.
+
+> * READ [SYSCALL](https://syscall.sh/)
+> * then `man 2 <syscall> `
+
+eg :
+```c
+#include <stdio.h>
+#include <stdlib.h>
+void main(){
+	write(1,"Hello",5); //std out syscall
+	exit(0); // exit syscall
+}
+
+```
+## Memory Layout
+The general memory layout for a program is as shown:
+
+![Alt text](image-4.png)
+* Reserved section: Not available to user programs.
+* Text (or code) section: Machine language (1's and 0's) that represent the code.
+* Data section: Initialized data, including declared variables that have been provided an initial value at assemble-time.
+* Uninitialized data section (BSS section): Declared variables that have not been provided an initial value. Value will not be meaningful if accessed before being set.
+* Heap: Dynamically allocated data.
+* Stack: Starts in high memory and grows downward.
+
+## Assemble/Link/Load Overview
+![Alt text](image-3.png)
+
+* **Assemble:** The assembler converts human readable source files into object files.
+* **Link:** The linker combines object files into an executable file.
+* **Load:** The loader loads the executable file into memory so that it can be executed by the CPU.
